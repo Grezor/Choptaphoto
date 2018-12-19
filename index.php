@@ -66,18 +66,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li class="nav-item">
                             <a class="nav-link" href="reservation.php">Reservation</a>
                         </li>
-                        <!--<li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                                <a class="dropdown-item text-center scroll" href="#team">Team</a>
-                                <a class="dropdown-item text-center scroll" href="#gallery">Photo Gallery</a>
-                                <a class="dropdown-item text-center scroll" href="#testimonials">Testimonials</a>
-
-                            </div>
-                        </li>-->
                         <li class="nav-item">
                             <a class="nav-link scroll" href="#contact">Contact</a>
                         </li>

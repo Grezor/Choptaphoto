@@ -1,10 +1,13 @@
 <?php
+## Login 
 
 if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
     require_once 'inc/db.php';
+    // selectionne users 
     $req = $pdo->prepare('SELECT * FROM users WHERE (username = :username OR email = :username) AND confirmed_at IS NOT NULL');
     $req->execute(['username' => $_POST['username']]);
     $user = $req->fetch();
+    // Message d'erreur
     if($user == null){
         $_SESSION['flash']['danger'] = 'Identifiant ou mot de passe incorrecte';
     }elseif(password_verify($_POST['password'], $user->password)){
