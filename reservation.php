@@ -1,4 +1,5 @@
 <?php 
+include 'inc/db.php';
 include 'menu.php';
 session_start();
 
@@ -27,17 +28,29 @@ session_start();
     <p>Votre email : <input type="email" name="email" class="form-control" required></p>
     <p>Telephone : <input type="text" name="tel" class="form-control" required></p>
 
-    <p>debut réservation : </p><input type="date" value="01-06-2019" name="date_reservation" class="form-control" required>
+    <p>debut réservation : </p><input type="date" name="date_reservation" class="form-control" required>
     <p>heure debut reservation : <input type="time" name="heure_reservation" required></p>
 
     <p>fin reservation : <input type="date" name="date_fin_reservation" class="form-control" required>
     heure fin reservation : <input type="time" name="fin_reservation" required></p>
-    <select name="produit">
+   
     <?php 
- // Affiche les produit en base de donnees
+// Affiche les produits
+$select_consommable = "SELECT nom FROM consommables";
+$req_consommables = $pdo->prepare($select_consommable);
+// execute la requete prepare
+$req_consommables->execute();
+?>
+ <select name="produit" class="form-control">
+ <?php 
+    // affiche tout les consommables, $req_consommables en parametre
+    while ($consommables = $req_consommables->fetch()) { ?>
+        <option value="produit"><?php echo "$consommables[nom]";?></option>
+    <?php
+    }
     ?>
-    </select>
-    <p>Produit : <input type="longtext" name="produit" class="form-control" required></p>
+</select>
+  
 
     <p><input type="submit" value="validation"></p>
 </form>
@@ -61,12 +74,12 @@ session_start();
 try
 {
     // connexion bdd
-  $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
-  $bdd = new PDO('mysql:host=localhost;dbname=ppe2v2', 'root', '', $pdo_options);
+ // $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
+//  $bdd = new PDO('mysql:host=localhost;dbname=ppe2v2', 'root', '', $pdo_options);
    
    
 // On recupere tout le contenu de la table news
-$reponse = $bdd->query('SELECT nom,stock,prix, description FROM consommables');
+$reponse = $pdo->query('SELECT nom,stock,prix, description FROM consommables');
 // donnée a vide
 $donnees = '';
 $count = 0;

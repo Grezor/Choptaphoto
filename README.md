@@ -24,4 +24,3 @@ La notion de réservation d’une borne devra permettre d’affecter à un clien
 * Hébergement : Linux (Debian) 
 * Contrôler de domaine : Active Directory sur Windows Server 2016 Versionning : « Github » sur dépôt privé 
 * Sauvegarde : Office 365. 
-
