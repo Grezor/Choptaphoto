@@ -36,7 +36,7 @@ var_dump($newDate, $newDate2);
    // value="');update test set date_reservation='2018-01-01';--"
 try {
 
-$insert_bdd = "INSERT INTO test (nom, prenom, email, tel, date_reservation, heure_reservation, date_fin_reservation, fin_reservation, produit )
+$insert_bdd = "INSERT INTO test (nom, prenom, email, tel, date_reservation, heure_reservation, date_fin_reservation, fin_reservation, produit)
 VALUES (:nom, :prenom, :email, :tel,:ddr,:hre_reservation,:ddr2,:hrefin_reservation, :produit)";
    
     $stmt = $pdo->prepare($insert_bdd);
