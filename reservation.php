@@ -38,10 +38,7 @@ $req_consommables->execute();
     <p><input type="submit" value="validation" class="btn btn-primary"></p>
 </form>
 
-
-
 </div>
-
 
 <TABLE BORDER="5">
 
