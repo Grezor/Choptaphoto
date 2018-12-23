@@ -81,6 +81,7 @@ $reponse->closeCursor();
 // affiche le nombre d'enregistrement bdd
 echo 'Il y a '.$count.' enregistrements dans la base de données 😂 .';
 }
+// affiche erreur 
 catch(Exception $e)
 {
   die('Erreur : '.$e->getMessage());
