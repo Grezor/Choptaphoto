@@ -29,7 +29,7 @@ if (session_status() === PHP_SESSION_NONE) {
           <nav class="navbar navbar-expand-lg navbar-light bg-light top-header">
               <div class="logo text-center">
                   <h1 class="logo">
-                      <a class="navbar-brand" href="index.html">
+                      <a class="navbar-brand" href="index.php">
                           <span class="sub"></span>Photo-Mobile</a>
                   </h1>
               </div>
@@ -50,6 +50,14 @@ if (session_status() === PHP_SESSION_NONE) {
                       </li>
                       <li class="nav-item">
                           <a class="nav-link scroll" href="#services">Services</a>
+                      </li>
+
+                      <li class="nav-item">
+                          <a class="nav-link " href="cart.php">panier</a>
+                      </li>
+
+                      <li class="nav-item">
+                          <a class="nav-link " href="category.php">category</a>
                       </li>
 
                       <li class="nav-item">
