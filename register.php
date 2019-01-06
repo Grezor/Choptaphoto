@@ -1,19 +1,21 @@
 <?php require_once 'inc/function.php'; ?>
 <?php session_start(); ?>
 <?php
+
 if (!empty($_POST)) {
     $errors = array();
     require_once 'inc/db.php';
+    $DB = new DB();
     //==============================================================
     //       Vérification Username
     //==============================================================
     if (empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
         $errors['username'] = "Votre pseudo n'est pas valide alphanumérique";
     } else {
-        $req = $pdo->prepare('SELECT id FROM users WHERE username = ?');
-        $req->execute([$_POST['username']]);
-        $user = $req->fetch();
-        if ($user) {
+        $req = $DB->requete('SELECT id FROM users WHERE username = ?', [$_POST['username']]);
+       
+        $user = $req[0] ?? null;
+        if ($user ) {
             $errors['username'] = 'ce pseudo est deja pris';
         }
     }
@@ -23,9 +25,8 @@ if (!empty($_POST)) {
     if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "Vous n'avez pas entrer d'email valide";
     } else {
-        $req = $pdo->prepare('SELECT id FROM users WHERE email = ?');
-        $req->execute([$_POST['email']]);
-        $user = $req->fetch();
+        $req = $DB->requete('SELECT id FROM users WHERE email = ?',[$_POST['email']]);
+        $user = $req[0] ?? null;
         if ($user) {
             $errors['email'] = 'ce email est deja pris';
         }
@@ -41,21 +42,20 @@ if (!empty($_POST)) {
     //       Affiche les erreurs
     //==============================================================
     if (empty($errors)) {
-        $req = $pdo->prepare("INSERT INTO users SET username = ?, password = ?, email= ?, confirmation_token = ?");
-        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        // taille de la clé génerer par mail, ici 60 caractère.
+        // taille de la clé génerer par mail, ici 60 caractère avec un hash mot de passe
         $token = str_random(60);
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+
+        $req = $DB->requete("INSERT INTO users SET username = ?, password = ?, email= ?, confirmation_token = ?",[$_POST['username'], $password, $_POST['email'], $token] );
+        
         debug($token);
 
-        $req->execute([$_POST['username'], $password, $_POST['email'], $token]);
-        $user_id = $pdo->lastInsertId();
+        $user_id = $DB->getDB()->lastInsertId();
         mail($_POST['email'], 'Confirmation de votre compte', "afin de valider de valider votre compte, merci de cliquer sur le lien \n\n http://localhost/gestion_membre/confirm.php?id=$user_id&token=$token");
         $_SESSION['flash']['success'] = "un email de confirmation vous avez etais envoyé pour valider votre compte";
         header('Location: login.php');
         exit();
-
     }
-
 }
 ?>
 

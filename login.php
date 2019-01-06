@@ -1,12 +1,14 @@
 <?php
 ## Login 
+require_once 'inc/db.php';
+$DB = new DB();
 
 if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
-    require_once 'inc/db.php';
+  
     // selectionne users 
-    $req = $pdo->prepare('SELECT * FROM users WHERE (username = :username OR email = :username) AND confirmed_at IS NOT NULL');
-    $req->execute(['username' => $_POST['username']]);
-    $user = $req->fetch();
+    $req = $DB->requete('SELECT * FROM users WHERE (username = :username OR email = :username) AND confirmed_at IS NOT NULL', ['username' => $_POST['username']]);
+   
+    $user = $req[0] ?? null;
     // Message d'erreur
     if($user == null){
         $_SESSION['flash']['danger'] = 'Identifiant ou mot de passe incorrecte';
@@ -20,56 +22,15 @@ if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
         $_SESSION['flash']['danger'] = 'Identifiant ou mot de passe incorrecte';
     }
 }
-?>
 
-
-<!DOCTYPE html>
-<html lang="zxx" class="no-js">
-
-<head>
-    <!-- Mobile Specific Meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="img/fav.png">
-    <!-- Author Meta -->
-    <meta name="author" content="CodePixar">
-    <!-- Meta Description -->
-    <meta name="description" content="">
-    <!-- Meta Keyword -->
-    <meta name="keywords" content="">
-    <!-- meta character set -->
-    <meta charset="UTF-8">
-    <!-- Site Title -->
-    <title>Shop</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-    <!--
-            CSS
-            ============================================= -->
-    <link rel="stylesheet" href="css/linearicons.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/nice-select.css">
-    <link rel="stylesheet" href="css/ion.rangeSlider.css" />
-    <link rel="stylesheet" href="css/ion.rangeSlider.skinFlat.css" />
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/main.css">
-</head>
-
-<body>
-
-    <!-- Start Header Area -->
-    <?php
              include "inc/header.php"
-             ?>
-    <!-- End Header Area -->
-
-    <!-- Start Banner Area -->
-    <section class="banner-area organic-breadcrumb">
+ ?>
+    
+    <section class="">
         <div class="container">
-            <div class="breadcrumb-banner d-flex flex-wrap align-items-center">
+            <div class=" d-flex flex-wrap align-items-center">
                 <div class="col-first">
-                    <h1>Login </h1>
+                    <h1>CONNEXION </h1>
                 </div>
             </div>
         </div>
@@ -109,7 +70,8 @@ if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="register-form">
+            <div class="login-form">
+                <div class="">
                     <h3 class="billing-title text-center">Register</h3>
                     <p class="text-center mt-40 mb-30">Crée votre propre compte</p>
 
@@ -117,19 +79,11 @@ if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
 
                 </div>
             </div>
+            </div>
         </div>
     </div>
 
-    <script src="js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.sticky.js"></script>
-    <script src="js/ion.rangeSlider.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+<?php require 'inc/footer.php'; ?>
 
 </body>
 

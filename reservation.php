@@ -14,8 +14,8 @@ session_start();
     <p>debut réservation : </p><input type="datetime" name="date_reservation" class="form-control" required>
     <p>heure debut reservation : <input type="time" name="heure_reservation" required></p>
 
-    <p>fin reservation : <input type="date" name="date_fin_reservation" class="form-control" required>
-    heure fin reservation : <input type="time" name="fin_reservation" required></p>
+    <p>fin reservation : <input type="date" name="date_fin_reservation" class="form-control" required></p>
+    <p>heure fin reservation : <input type="time" name="fin_reservation" required></p>
    
 <?php 
 // Affiche les produits
@@ -38,10 +38,7 @@ $req_consommables->execute();
     <p><input type="submit" value="validation" class="btn btn-primary"></p>
 </form>
 
-
-
 </div>
-
 
 <TABLE BORDER="5">
 

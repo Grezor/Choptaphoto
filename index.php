@@ -64,7 +64,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="reservation.php">Reservation</a>
+                            <a class="nav-link" href="category.php">category</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cart.php">Reservation</a>
+                        </li>
+
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="panier.php">Panier</a>
                         </li>
 
                         <li class="nav-item">
