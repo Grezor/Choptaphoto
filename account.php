@@ -28,17 +28,13 @@ if (!empty($_POST)) {
 }
 require 'inc/header.php'; ?>
     <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<h5>bonjour <?= $_SESSION['auth']->username; ?></h5>
+<h5>Bonjour <?= $_SESSION['auth']->username; ?> - Role :<?= $_SESSION['auth']->role; ?></h5>
 <?php
 
 $jour = array("Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi");
-
 $mois = array("","Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre");
-
 $datefr = $jour[date("w")]." ".date("d")." ".$mois[date("n")]." ".date("Y");
-
 echo "Nous sommes le ". $datefr;
-
 ?> 
 
 <form method="post" action="">

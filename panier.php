@@ -1,16 +1,10 @@
 <?php
-require 'db.class.php';
+
 require 'paniers.class.php';
 require 'inc/header.php';
 $DB = new DB();
 $panier = new panier($DB);
 
-?>
-<?php
-
-if (isset($_GET['del'])) {
-    $panier->supprimer_produit($_GET['del']);
-}
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +44,7 @@ if (isset($_GET['del'])) {
 </head>
 
 <body>
-
+<form action="panier.php" method="post">
 
 <div class="container">
     <div class="cart-title">
@@ -78,9 +72,8 @@ if (isset($_GET['del'])) {
     } else {
         $products = $DB->requete('SELECT * FROM products WHERE id IN (' . implode(',', $ids) . ')');
     }
-    foreach ($products as $product):
 
-        ?>
+    foreach ($products as $product): ?>
 
 
         <div class="cart-single-item">
@@ -97,35 +90,43 @@ if (isset($_GET['del'])) {
                 </div>
                 <div class="col-md-2 col-6">
                     <div class="quantity-container d-flex align-items-center mt-15">
-                        <input type="text" class="quantity-amount" value="<?=$_SESSION['panier'][$product->id]?>"/>
+<!--                         quantite du produit-->
+                        <input type="text" class="quantity-amount" name="panier[quantity][<?= $product->id; ?>]" value="<?= $_SESSION['panier'][$product->id]?>"/>
 
-                        <div class="arrow-btn d-inline-flex flex-column">
-
-                            <button class="increase arrow" type="button" title="Increase Quantity"><i
-                                        class="fa fa-arrow-up"></i></button>
-                            <button class="decrease arrow" type="button" title="Decrease Quantity"><i
-                                        class="fa fa-arrow-down"></i></button>
-                        </div>
-                        <a href="cart.php?del=<?= $product->id; ?>" class="increase arrow" type="button" title="Increase Quantity"><i class="fa fa-close"></i></a>
+                        <a href="panier.php?delPanier=<?= $product->id; ?>" class="increase arrow" type="button" title="Increase Quantity"><i class="fa fa-close"></i></a>
                     </div>
 
                 </div>
                 <div class="col-md-2 col-12">
-                    <div class="total"><?= number_format($product->price * 1.196, 2, ',', ' '); ?> €</div>
+                    <div class="total"><?= number_format($product->price * 1.2, 2, ',', ' '); ?> €</div>
                 </div>
-
             </div>
         </div>
     <?php endforeach; ?>
 
-
+            <input type="submit" value="recalculer">
     <div class="subtotal-area d-flex align-items-center justify-content-end">
-        <div class="title text-uppercase" style="color: red; font-weight: bold;">GRAND TOTAL </div>
-        <div class="subtotal"><?= number_format($panier->total(),2,',', '');?>€</div>
-    </div>
-    <div class="shipping-area d-flex justify-content-end">
 
+        <div class="title text-uppercase" style="color: red; font-weight: bold;">GRAND TOTAL </div>
+        <div class="subtotal"><?= number_format($panier->total() * 1.2,2,',', '');?>€</div>
+    </div>
+
+        <div class="subtotal-area d-flex align-items-center justify-content-end">
+            <div class="title text-uppercase" style="color: red; font-weight: bold;">Nombre d'element </div>
+            <div class="subtotal"><?= $panier->count();?></div>
+        </div>
 </div>
+</form>
+<?php
+require 'inc/footer.php';
+?>
+<script
+        src="https://code.jquery.com/jquery-1.7.2.min.js"
+        integrity="sha256-R7aNzoy2gFrVs+pNJ6+SokH04ppcEqJ0yFLkNGoFALQ="
+        crossorigin="anonymous"></script>
+<script src="js/app.js"></script>
+
+
 
 
 <script src="js/vendor/jquery-2.2.4.min.js"></script>
@@ -140,6 +141,7 @@ if (isset($_GET['del'])) {
 <script src="js/jquery.magnific-popup.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/main.js"></script>
+
 </body>
 
 </html>

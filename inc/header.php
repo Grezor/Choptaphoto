@@ -1,9 +1,15 @@
 <?php
+
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+   session_start();
 }
+require_once 'inc/db.php';
+require_once 'paniers.class.php';
+$DB = new DB();
+$panier = new panier($DB);
 
 ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,14 +18,22 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
-
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!--
+            CSS
+            ============================================= -->
+            <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/linearicons.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/nice-select.css">
+    <link rel="stylesheet" href="css/nouislider.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main_panier.css">
     <title>Starter Template for Bootstrap</title>
     <link rel="stylesheet" href="css/app.css">
-    <!-- Bootstrap core CSS -->
-
-
-    <!-- Custom styles for this template -->
-    <link href="../css/app.css" rel="stylesheet">
+ 
+  
 </head>
 
 <body>
@@ -41,7 +55,7 @@ if (session_status() === PHP_SESSION_NONE) {
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mx-auto">
                       <li class="nav-item active">
-                          <a class="nav-link ml-lg-0" href="index.html">Acceuil
+                          <a class="nav-link ml-lg-0" href="index.php">Acceuil
                               <span class="sr-only">(current)</span>
                           </a>
                       </li>
@@ -53,7 +67,7 @@ if (session_status() === PHP_SESSION_NONE) {
                       </li>
 
                       <li class="nav-item">
-                          <a class="nav-link " href="cart.php">panier</a>
+                          <a class="nav-link " href="panier.php">panier</a>
                       </li>
 
                       <li class="nav-item">
@@ -67,7 +81,8 @@ if (session_status() === PHP_SESSION_NONE) {
                           <a class="nav-link scroll" href="#contact">Contact</a>
                       </li>
 
-                      <?php if (isset($_SESSION['auth'])): ?>
+                      <?php // si l'utilisateur n'est pas admin, il n'affiche pas la partie admin
+                       if (isset($_SESSION['auth'])): ?>
                           <li class="nav-item "><a class="nav-link" href="logout.php">Se deconnecter</a></>
                           <!-- Si la personnes est un admin alors il a le mennu admin -->
                           <?php if ($_SESSION['auth']->role == 'admin'): ?>
@@ -75,15 +90,16 @@ if (session_status() === PHP_SESSION_NONE) {
                           <?php endif; ?>
                       <?php else: ?>
                            <li class="nav-item">
-                              <a class="nav-link" href="login.php">Se connecter </a>
+                              <a class="nav-link" href="login.php">Login </a>
                           </li>
                       <?php endif; ?>
                   </ul>
               </div>
               <div class="phone-inline my-2 my-lg-0">
+                  <a href="panier.php">
+                  <span id="count">(<?= $panier->count();?>) </span></a>-
+                      <span id="total"><?= number_format($panier->total()*1.2, 2, ',', ''); ?> €</span>
 
-                  <h6>
-                      <span class="fas fa-phone"></span> 03 04 05 06 07 </h6>
               </div>
 
           </nav>

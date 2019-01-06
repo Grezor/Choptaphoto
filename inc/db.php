@@ -34,6 +34,11 @@ class DB
         return $req->fetchAll(PDO::FETCH_OBJ);
     }
 
+     public function getDB()
+    {
+        return $this->db;
+    }
+
 
 }
 
