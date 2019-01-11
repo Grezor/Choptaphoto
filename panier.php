@@ -1,47 +1,101 @@
 <?php
-
 require 'paniers.class.php';
-require 'inc/header.php';
+//require 'inc/header.php';
+include 'header.php';
 $DB = new DB();
 $panier = new panier($DB);
 
 ?>
 
-<!DOCTYPE html>
-<html lang="fr" class="no-js">
-
 <head>
-    <!-- Mobile Specific Meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="img/fav.png">
-    <!-- Author Meta -->
-    <meta name="author" content="CodePixar">
-    <!-- Meta Description -->
-    <meta name="description" content="">
-    <!-- Meta Keyword -->
-    <meta name="keywords" content="">
-    <!-- meta character set -->
-    <meta charset="UTF-8">
-    <!-- Site Title -->
-    <title></title>
+    <title>Photo mobile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Shoot a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script>
+        addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-    <!--
-            CSS
-            ============================================= -->
-    <link rel="stylesheet" href="css/linearicons.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/nice-select.css">
-    <link rel="stylesheet" href="css/ion.rangeSlider.css"/>
-    <link rel="stylesheet" href="css/ion.rangeSlider.skinFlat.css"/>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/main_panier.css">
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css" media="all">
+    <link rel="stylesheet" href="css/owl.theme.css" type="text/css" media="all">
+    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" property="" />
+    <link href="css/style.css" rel='stylesheet' type='text/css' />
+    <link href="css/fontawesome-all.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Tajawal:200,300,400,500,700,800,900" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700" rel="stylesheet">
 </head>
+
+<body>
+    <!-- /banner -->
+    <header>
+          <nav class="navbar navbar-expand-lg navbar-light bg-light top-header">
+              <div class="logo text-center">
+                  <h1 class="logo">
+                      <a class="navbar-brand" href="index.php">
+                          <span class="sub"></span>Photo-Mobile</a>
+                  </h1>
+              </div>
+              <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+                      <i class="fas fa-bars"></i>
+                  </span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mx-auto">
+                      <li class="nav-item active">
+                          <a class="nav-link ml-lg-0" href="index.php">Acceuil
+                              <span class="sr-only">(current)</span>
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link scroll" href="#about">A Propos</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link scroll" href="#services">Services</a>
+                      </li>
+
+                      <li class="nav-item">
+                          <a class="nav-link " href="panier.php">panier</a>
+                      </li>
+
+                      <li class="nav-item">
+                          <a class="nav-link " href="category.php">category</a>
+                      </li>
+
+                      <li class="nav-item">
+                          <a class="nav-link scroll" href="#contact">Contact</a>
+                      </li>
+
+                      <?php // si l'utilisateur n'est pas admin, il n'affiche pas la partie admin
+                       if (isset($_SESSION['auth'])): ?>
+                          <li class="nav-item "><a class="nav-link" href="logout.php">Se deconnecter</a></>
+                          <!-- Si la personnes est un admin alors il a le mennu admin -->
+                          <?php if ($_SESSION['auth']->role == 'admin'): ?>
+                              <li class="nav-item"><a class="nav-link" href="admin.php">administration</a></li>
+                          <?php endif; ?>
+                      <?php else: ?>
+                           <li class="nav-item">
+                              <a class="nav-link" href="login.php">Login </a>
+                          </li>
+                      <?php endif; ?>
+                  </ul>
+              </div>
+              <div class="phone-inline my-2 my-lg-0">
+                  <a href="panier.php">
+                  <span id="count">(<?= $panier->count();?>) </span></a>-
+                      <span id="total"><?= number_format($panier->total()*1.2, 2, ',', ''); ?> €</span>
+
+              </div>
+
+          </nav>
+        </header>
 
 <body>
 <form action="panier.php" method="post">

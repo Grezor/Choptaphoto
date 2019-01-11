@@ -1,11 +1,6 @@
 <?php 
-include 'inc/db.php';
-//include 'menu.php';
-session_start();
+include 'header.php';
 ?>
-<!DOCTYPE html>
-<html lang="zxx">
-
 <head>
     <title>Photo mobile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,10 +50,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="categorie.php">categorie</a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="reservation.php">Reservation</a>
                         </li>
 
@@ -99,92 +94,58 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </nav>
         </header>
 
-<div class="container">
-<form action="action.php" method="POST" class="form-group" >
-    <p>Votre nom : <input type="text" name="nom" class="form-control" required autofocus/></p>
-    <p>Votre prenom : <input type="text" name="prenom" class="form-control" required/></p>
-    <p>Votre email : <input type="email" name="email" class="form-control" required></p>
-    <p>Telephone : <input type="text" name="tel" class="form-control" required></p>
 
-    <p>debut réservation : </p><input type="datetime" name="date_reservation" class="form-control" required>
-    <p>heure debut reservation : <input type="time" name="heure_reservation" required></p>
+    <!-- Start Header Area -->
 
-    <p>fin reservation : <input type="date" name="date_fin_reservation" class="form-control" required></p>
-    <p>heure fin reservation : <input type="time" name="fin_reservation" required></p>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 col-lg-8 col-md-7">
+                
+                <section class="lattest-product-area pb-40 category-list">
+                    <div class="row">
+                        <?php $products = $DB->requete('SELECT * FROM bornes, consommable')?>
+                        <?php foreach ( $products as $product):?>
 
-                    
+                            <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
+                                <div class="content">
+                                    <div class="content-overlay"></div>
+                                    <img class="content-image img-fluid d-block mx-auto" src="images/<?= $product->id; ?>" alt="">
+                                    <div class="content-details fadeIn-bottom">
+                                        <div class="bottom d-flex align-items-center justify-content-center">
+                                            <a class="addPanier" href="addpanier.php?id=<?= $product->id; ?>"><i class="fa fa-shopping-cart"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="price">
+                                    <h5><?= $product->name ?></h5>
+                                    <h3><?= number_format($product->price, 2, ',', ''); ?> €</h3>
+                                </div>
+                            </div>
 
-   
+                        <?php endforeach; ?>
+
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+              
+                
+               
+            </div>
+           
+        </div>
+    </div>
 <?php 
-// Affiche les produits
-$DB = new DB();
-$select_consommable = "SELECT libelle FROM consommables";
-$req_consommables = $DB->requete($select_consommable);
-// execute la requete prepare
-//$req_consommables->execute();
+require 'inc/footer.php';
 ?>
- <select name="produit" class="form-control">
- <?php 
-    // affiche tout les consommables, $req_consommables en parametre
-    foreach ($req_consommables AS $consommables ) { ?>
-        <option value="produit"><?php echo $consommables->libelle;?></option>
-<?php
-    }
-?>
-</select>
-  <br>
-
-    <p><input type="submit" value="validation" class="btn btn-primary"></p>
-</form>
-
-</div>
-
-<!--<TABLE BORDER="5">
-
-<tr>
-
-<th> Nom </th>
-<th> Stock </th>
-<th> Prix </th>
-<th> Description </th>
-</tr>-->
-
-<?php
-try
-{
-
-// On recupere tout le contenu de la table news
-$reponse = $DB->requete('SELECT libelle,stock,prix, description FROM consommables');
-// donnée a vide
-$donnees = '';
-$count = 0;
   
-// boucle while qui affiche le nombre donnee bdd
-// affiche nombre de résultat dans la bdd
-/*foreach ($reponse AS $donnees )
-    {
-        $count = $count +1;
-    //On affiche les données dans le tableau
-    echo "</tr>";
-    echo "<td> $donnees->libelle </td>";
-    echo "<td> $donnees->stock </td>";
-    echo "<td> $donnees->prix"." € </td>" ;
-    echo "<td> $donnees->description </td>";
-    echo "</tr>";
-
-    }*/
-//$reponse->closeCursor();
-// affiche le nombre d'enregistrement bdd
-echo 'Il y a '.$count.' enregistrements dans la base de données 😂 .';
-}
-// affiche erreur 
-catch(Exception $e)
-{
-  die('Erreur : '.$e->getMessage());
-}
-?>
- 
-</table> 
-
 </body>
+
 </html>

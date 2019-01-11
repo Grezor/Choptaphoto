@@ -52,7 +52,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item active">
-                            <a class="nav-link ml-lg-0" href="index.html">Acceuil
+                            <a class="nav-link ml-lg-0" href="index.php">Acceuil
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
@@ -64,10 +64,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="category.php">category</a>
+                            <a class="nav-link" href="categorie.php">categorie</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cart.php">Reservation</a>
+                            <a class="nav-link" href="reservation.php">Reservation</a>
                         </li>
 
                         
@@ -259,7 +259,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-6 team_grid">
 								<div class="view view-second">
-									<img src="images/franck2.jpg" alt=" " class="img-fluid"/>
+									<img src="images/franck.jpg" alt=" " class="img-fluid1"/>
 								</div>
                 <h4 class="mt-4">Franck Olivier</h4>
                 <p class="my-2">Co-founder</p>
@@ -313,40 +313,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 								</ul>
 							</div>
-							<div class="col-md-6 col-sm-6 col-xs-6 team_grid">
-								<div class="view view-second">
-									<img src="images/t4.jpg" alt=" " class="img-fluid" />
-								</div>
-								<h4 class="mt-4">Stiven Garsia</h4>
-								<p class="my-2">Co-founder</p>
-								<ul class="social_list1 text-center">
-
-									<li>
-										<a href="#" class="facebook1 ">
-											<i class="fab fa-facebook-f"></i>
-
-										</a>
-									</li>
-									<li>
-										<a href="#" class="twitter2 mx-2">
-											<i class="fab fa-twitter"></i>
-
-										</a>
-									</li>
-									<li>
-										<a href="#" class="dribble3">
-											<i class="fab fa-dribbble"></i>
-										</a>
-									</li>
-
-								</ul>
-							</div>
 						</div>
 					</div>
 					<div class="col-lg-4 header-info mt-5">
-						<h3 class="heading ">Our Team</h3>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Nunc Nam vel feugiat</p>
-						<a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-sm animated-button gibson-three mt-3">Read More</a>
+						<h3 class="heading ">Le staff</h3>
+						<p>Voici l'equipe</p>
 					</div>
 				</div>
 			</div>
@@ -361,7 +332,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="inner-sec-w3ls-agileits p-lg-5 p-3">
                 <div class="gallery_grids row">
                     <div class="col-lg-3 header-info mt-5">
-                        <h3 class="heading">Evénement.</h3>
+                        <h3 class="heading">Evénement</h3>
                         <p>Voilas la liste des événements.</p>
 
                     </div>
@@ -369,33 +340,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <ul class="clearfix demo">
                             <li>
                                 <div class="gallery-grid1">
-                                    <img src="images/mariage.jpg" alt=" " class="img-fluid" />
+                                    <img src="images/mariage.jpg" alt=" " class="img-fluid2" />
                                     <div class="p-mask">
-                                        <h4>Mariage.</h4>
+                                        <h4>Mariage</h4>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="gallery-grid1">
-                                    <img src="images/seminaire.jpg" alt=" " class="img-fluid" />
+                                    <img src="images/seminaire.jpg" alt=" " class="img-fluid2" />
                                     <div class="p-mask">
-                                        <h4>Séminaire.</h4>
+                                        <h4>Séminaire</h4>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="gallery-grid1">
-                                    <img src="images/anniverssaire.jpg" alt=" " class="img-fluid" />
+                                    <img src="images/anniverssaire.jpg" alt=" " class="img-fluid2" />
                                     <div class="p-mask">
-                                        <h4>Anniverssaire.</h4>
+                                        <h4>Anniverssaire</h4>
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="gallery-grid1">
-                                    <img src="images/soir%C3%A9e%20etudiante.jpg" alt=" " class="img-fluid" />
+                                    <img src="images/soir%C3%A9e%20etudiante.jpg" alt=" " class="img-fluid2" />
                                     <div class="p-mask">
-                                        <h4>Soirée étudiante.</h4>
+                                        <h4>Soirée étudiante</h4>
                                     </div>
                                 </div>
                             </li>
@@ -492,9 +463,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <ul class="list-unstyled mt-3 mb-4">
                                         <li class="py-2 border-bottom">25 photos</li>
                                         <li class="py-2 border-bottom">borne photo</li>
-                                        <li class="py-2">imprimente</li>
+                                        <li class="py-2">imprimante</li>
                                     </ul>
-                                    <a href="#contact" class="btn btn-sm animated-button gibson-three mt-3 scroll">details</a>
+                                    <a href="reservation.php" class="btn btn-sm animated-button gibson-three mt-3 ">réserver</a>
                                 </div>
                             </div>
                             <div class="col-md-4 price-main-info card box-shadow">
@@ -511,9 +482,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <ul class="list-unstyled mt-3 mb-4">
                                         <li class="py-2 border-bottom">50 photos</li>
                                         <li class="py-2 border-bottom">borne photo</li>
-                                        <li class="py-2">imprimente</li>
+                                        <li class="py-2">imprimante</li>
                                     </ul>
-                                    <a href="#contact" class="btn btn-sm animated-button gibson-three mt-3 scroll">détails</a>
+                                    <a href="reservation.php" class="btn btn-sm animated-button gibson-three mt-3 ">réserver</a>
                                 </div>
                             </div>
                             <div class="col-md-4 price-main-info card box-shadow">
@@ -530,9 +501,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <ul class="list-unstyled mt-3 mb-4">
                                         <li class="py-2 border-bottom">150 photos</li>
                                         <li class="py-2 border-bottom">borne photo</li>
-                                        <li class="py-2">imprimente</li>
+                                        <li class="py-2">imprimante</li>
                                     </ul>
-                                    <a href="#contact" class="btn btn-sm animated-button gibson-three mt-3 scroll">details</a>
+                                    <a href="reservation.php" class="btn btn-sm animated-button gibson-three mt-3 ">réserver</a>
                                 </div>
                             </div>
                         </div>
@@ -700,8 +671,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <label>Message</label>
                                     <textarea id="textarea" placeholder=""></textarea>
                                 </div>
-                                <div class="input-group1">
-                                    <input class="form-control" type="submit" value="Envoyer">
+                                <div class="input-group1 col-lg-5 btn btn-default center-block">
+                                    <input class="form-control1" type="submit" value="Envoyer">
                                 </div>
                             </form>
                         </div>

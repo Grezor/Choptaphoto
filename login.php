@@ -8,7 +8,7 @@ if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
     // selectionne users 
     $req = $DB->requete('SELECT * FROM users WHERE (username = :username OR email = :username) AND confirmed_at IS NOT NULL', ['username' => $_POST['username']]);
    
-    $user = $req[0] ?? null;
+    $user = $req[0] == null;
     // Message d'erreur
     if($user == null){
         $_SESSION['flash']['danger'] = 'Identifiant ou mot de passe incorrecte';
