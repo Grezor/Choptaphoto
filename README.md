@@ -1,5 +1,9 @@
-# Choptaphoto
+# Choptaphoto 2017/2019
 sauvegarde 
+
+⚠️ This project is no longer maintained.
+*Updated on 2023-02-18*
+
 
 ## Présentation du projet: 
 
